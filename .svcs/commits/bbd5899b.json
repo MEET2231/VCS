@@ -1,0 +1,51 @@
+{
+  "id": "bbd5899b",
+  "timestamp": "2025-08-27T10:48:53.525214",
+  "author": "developer",
+  "message": "Initial commit",
+  "file": "example.py",
+  "ast": {
+    "type": "Module",
+    "body": [
+      {
+        "type": "FunctionDef",
+        "lineno": 1,
+        "col_offset": 0,
+        "name": "foo",
+        "args": {
+          "type": "arguments",
+          "posonlyargs": [],
+          "args": [],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "type": "Return",
+            "lineno": 2,
+            "col_offset": 4,
+            "value": {
+              "type": "Constant",
+              "lineno": 2,
+              "col_offset": 11,
+              "value": 1,
+              "kind": null
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": null,
+        "type_comment": null,
+        "type_params": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "diff": [
+    "Initial commit of example.py"
+  ],
+  "parent": null
+}

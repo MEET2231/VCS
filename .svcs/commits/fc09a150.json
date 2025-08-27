@@ -1,0 +1,214 @@
+{
+  "id": "fc09a150",
+  "timestamp": "2025-08-27T10:49:42.686341",
+  "author": "developer",
+  "message": "Changed foo signature and added Calculator class",
+  "file": "example.py",
+  "ast": {
+    "type": "Module",
+    "body": [
+      {
+        "type": "FunctionDef",
+        "lineno": 1,
+        "col_offset": 0,
+        "name": "foo",
+        "args": {
+          "type": "arguments",
+          "posonlyargs": [],
+          "args": [
+            {
+              "type": "arg",
+              "lineno": 1,
+              "col_offset": 8,
+              "arg": "x",
+              "annotation": null,
+              "type_comment": null
+            },
+            {
+              "type": "arg",
+              "lineno": 1,
+              "col_offset": 11,
+              "arg": "y",
+              "annotation": null,
+              "type_comment": null
+            }
+          ],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "type": "Return",
+            "lineno": 2,
+            "col_offset": 4,
+            "value": {
+              "type": "BinOp",
+              "lineno": 2,
+              "col_offset": 11,
+              "left": {
+                "type": "Name",
+                "lineno": 2,
+                "col_offset": 11,
+                "id": "x",
+                "ctx": {
+                  "type": "Load"
+                }
+              },
+              "op": {
+                "type": "Add"
+              },
+              "right": {
+                "type": "Name",
+                "lineno": 2,
+                "col_offset": 15,
+                "id": "y",
+                "ctx": {
+                  "type": "Load"
+                }
+              }
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": null,
+        "type_comment": null,
+        "type_params": []
+      },
+      {
+        "type": "FunctionDef",
+        "lineno": 4,
+        "col_offset": 0,
+        "name": "bar",
+        "args": {
+          "type": "arguments",
+          "posonlyargs": [],
+          "args": [],
+          "vararg": null,
+          "kwonlyargs": [],
+          "kw_defaults": [],
+          "kwarg": null,
+          "defaults": []
+        },
+        "body": [
+          {
+            "type": "Return",
+            "lineno": 5,
+            "col_offset": 4,
+            "value": {
+              "type": "Constant",
+              "lineno": 5,
+              "col_offset": 11,
+              "value": 3,
+              "kind": null
+            }
+          }
+        ],
+        "decorator_list": [],
+        "returns": null,
+        "type_comment": null,
+        "type_params": []
+      },
+      {
+        "type": "ClassDef",
+        "lineno": 7,
+        "col_offset": 0,
+        "name": "Calculator",
+        "bases": [],
+        "keywords": [],
+        "body": [
+          {
+            "type": "FunctionDef",
+            "lineno": 8,
+            "col_offset": 4,
+            "name": "add",
+            "args": {
+              "type": "arguments",
+              "posonlyargs": [],
+              "args": [
+                {
+                  "type": "arg",
+                  "lineno": 8,
+                  "col_offset": 12,
+                  "arg": "self",
+                  "annotation": null,
+                  "type_comment": null
+                },
+                {
+                  "type": "arg",
+                  "lineno": 8,
+                  "col_offset": 18,
+                  "arg": "a",
+                  "annotation": null,
+                  "type_comment": null
+                },
+                {
+                  "type": "arg",
+                  "lineno": 8,
+                  "col_offset": 21,
+                  "arg": "b",
+                  "annotation": null,
+                  "type_comment": null
+                }
+              ],
+              "vararg": null,
+              "kwonlyargs": [],
+              "kw_defaults": [],
+              "kwarg": null,
+              "defaults": []
+            },
+            "body": [
+              {
+                "type": "Return",
+                "lineno": 9,
+                "col_offset": 8,
+                "value": {
+                  "type": "BinOp",
+                  "lineno": 9,
+                  "col_offset": 15,
+                  "left": {
+                    "type": "Name",
+                    "lineno": 9,
+                    "col_offset": 15,
+                    "id": "a",
+                    "ctx": {
+                      "type": "Load"
+                    }
+                  },
+                  "op": {
+                    "type": "Add"
+                  },
+                  "right": {
+                    "type": "Name",
+                    "lineno": 9,
+                    "col_offset": 19,
+                    "id": "b",
+                    "ctx": {
+                      "type": "Load"
+                    }
+                  }
+                }
+              }
+            ],
+            "decorator_list": [],
+            "returns": null,
+            "type_comment": null,
+            "type_params": []
+          }
+        ],
+        "decorator_list": [],
+        "type_params": []
+      }
+    ],
+    "type_ignores": []
+  },
+  "diff": [
+    "Function `add` added",
+    "Function `foo` signature modified (arguments added)",
+    "Function `foo` modified (return value changed)",
+    "Class `Calculator` added"
+  ],
+  "parent": "7d1397f0"
+}
