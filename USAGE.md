@@ -4,28 +4,70 @@
 
 1. **Initialize a repository**:
    ```bash
-   python svcs.py init
+   python svcs.py init                    # Initialize in current directory
+   python svcs.py init /path/to/project   # Initialize in specific directory
    ```
 
 2. **Commit a Python file**:
    ```bash
    python svcs.py commit myfile.py -m "Your commit message" -a "Your Name"
+   python svcs.py --repo /path/to/repo commit /path/to/file.py -m "Message" -a "Author"
    ```
 
 3. **View commit history**:
    ```bash
    python svcs.py log
+   python svcs.py --repo /path/to/repo log
    ```
+
+## Working with Different Directories
+
+SVCS now supports working with files and repositories in different directories:
+
+### Repository Location Options
+
+1. **Auto-discovery**: SVCS will search for `.svcs` directory starting from current directory and walking up the tree
+2. **Explicit repository**: Use `--repo` flag to specify repository location
+3. **Initialize anywhere**: Initialize repositories in any directory
+
+### Examples
+
+```bash
+# Initialize repository in a project directory
+python svcs.py init /home/user/my_project
+
+# Commit files from anywhere using --repo flag
+python svcs.py --repo /home/user/my_project commit /home/user/my_project/src/main.py -m "Add main" -a "dev"
+
+# Work from within project (auto-discovery)
+cd /home/user/my_project
+python /path/to/svcs.py commit src/main.py -m "Update main" -a "dev"
+python /path/to/svcs.py log
+
+# Commit files outside project directory
+python svcs.py --repo /home/user/my_project commit /tmp/script.py -m "Add script" -a "dev"
+```
 
 ## Detailed Commands
 
-### `svcs init`
-Creates a new SVCS repository in the current directory.
-- Creates `.svcs/` folder with repository structure
-- Initializes configuration and references
+### `svcs init [path]`
+Creates a new SVCS repository.
+
+**Arguments:**
+- `path`: Directory to initialize repository in (default: current directory)
+
+**Examples:**
+```bash
+python svcs.py init                    # Initialize in current directory
+python svcs.py init my_project         # Initialize in ./my_project/
+python svcs.py init /abs/path/project  # Initialize in absolute path
+```
 
 ### `svcs commit <file.py>`
 Commits changes to a Python file.
+
+**Global Options:**
+- `--repo, -r`: Repository path (auto-discovered if not specified)
 
 **Options:**
 - `-m, --message`: Commit message (optional)
@@ -33,20 +75,30 @@ Commits changes to a Python file.
 
 **Examples:**
 ```bash
+# From within repository
 python svcs.py commit app.py -m "Added new function" -a "John Doe"
-python svcs.py commit script.py  # Minimal commit
+
+# Specify repository explicitly
+python svcs.py --repo /project commit /project/src/app.py -m "Update" -a "Jane"
+
+# Commit file outside repository
+python svcs.py --repo /project commit /external/script.py -m "External script" -a "Dev"
 ```
 
 ### `svcs log`
 Shows commit history with semantic changes.
+
+**Global Options:**
+- `--repo, -r`: Repository path (auto-discovered if not specified)
 
 **Options:**
 - `-n, --limit`: Limit number of commits shown
 
 **Examples:**
 ```bash
-python svcs.py log           # Show all commits
-python svcs.py log -n 5      # Show last 5 commits
+python svcs.py log                    # Show all commits (auto-discover repo)
+python svcs.py --repo /project log    # Show commits from specific repo
+python svcs.py log -n 5               # Show last 5 commits
 ```
 
 ## Understanding Semantic Changes

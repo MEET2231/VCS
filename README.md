@@ -8,6 +8,9 @@ A simple prototype for a **semantic version control system** that tracks changes
 - **Semantic Diffs**: Generates human-readable descriptions of code changes
 - **JSON-Based Storage**: Stores commits as structured JSON objects
 - **Simple CLI**: Easy-to-use command-line interface
+- **Multi-Directory Support**: Work with files and repositories in different directories
+- **Repository Auto-Discovery**: Automatically finds repositories like Git
+- **Flexible Path Handling**: Supports both relative and absolute file paths
 
 ## How It Works
 
@@ -28,20 +31,32 @@ cd VCS
 
 ## Usage
 
-### Initialize Repository
+### Basic Usage
 ```bash
+# Initialize repository
 python svcs.py init
-```
 
-### Commit Changes
-```bash
-python svcs.py commit <file.py> -m "commit message" -a "author name"
-```
+# Commit a file
+python svcs.py commit example.py -m "commit message" -a "author name"
 
-### View History
-```bash
+# View history
 python svcs.py log
 ```
+
+### Multi-Directory Usage
+```bash
+# Initialize repository in specific directory
+python svcs.py init /path/to/project
+
+# Commit files from anywhere using --repo flag
+python svcs.py --repo /path/to/project commit /path/to/file.py -m "message" -a "author"
+
+# Work from within project (auto-discovery)
+cd /path/to/project
+python svcs.py commit src/main.py -m "update main" -a "dev"
+```
+
+See [USAGE.md](USAGE.md) and [MULTI_DIRECTORY.md](MULTI_DIRECTORY.md) for detailed documentation.
 
 ## Example
 

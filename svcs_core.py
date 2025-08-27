@@ -49,7 +49,7 @@ class SVCSRepository:
     
     def commit(self, file_path: str, author: str, message: str = "") -> str:
         """Commit changes to a Python file."""
-        file_path = Path(file_path)
+        file_path = Path(file_path).resolve()  # Convert to absolute path
         
         if not file_path.exists():
             raise Exception(f"File {file_path} does not exist")
@@ -60,8 +60,11 @@ class SVCSRepository:
         # Parse current AST
         current_ast = parse_ast(str(file_path))
         
+        # Store relative path for better portability
+        relative_path = self._get_relative_path(file_path)
+        
         # Get previous commit for this file
-        previous_ast = self._get_last_ast_for_file(str(file_path))
+        previous_ast = self._get_last_ast_for_file(relative_path)
         
         # Calculate diff
         if previous_ast:
@@ -78,7 +81,8 @@ class SVCSRepository:
             "timestamp": datetime.now().isoformat(),
             "author": author,
             "message": message,
-            "file": str(file_path),
+            "file": relative_path,  # Store relative path
+            "file_absolute": str(file_path),  # Also store absolute for reference
             "ast": current_ast,
             "diff": ast_diff,
             "parent": self._get_last_commit_id()
@@ -178,3 +182,12 @@ class SVCSRepository:
             commits = commits[:limit]
         
         return commits
+    
+    def _get_relative_path(self, file_path: Path) -> str:
+        """Get relative path from repository root."""
+        try:
+            repo_root = self.repo_path.parent  # Parent of .svcs
+            return str(file_path.relative_to(repo_root))
+        except ValueError:
+            # File is outside repository, use absolute path
+            return str(file_path)
